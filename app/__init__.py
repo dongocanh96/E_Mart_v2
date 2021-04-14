@@ -12,3 +12,8 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 from app.models import models
+from app.routes import account, auth, item
+
+app.register_blueprint(account.bp)
+app.register_blueprint(auth.bp)
+app.register_blueprint(item.bp)

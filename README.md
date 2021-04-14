@@ -1,5 +1,5 @@
 # E_Mart
-An e-commerce web's built using Flask under the microservice architecture
+An e-commerce web's built using Flask under the Rest Api architecture
 ## How to run:
 1. create a virtualenv environment
 2. Activate environment then run `python3 -m pip install -r requirements.txt`

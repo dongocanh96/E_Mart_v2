@@ -1,7 +1,7 @@
 from flask import request, jsonify
 from datetime import datetime, timedelta
 from app import db
-from app.models.account import Account
+from app.models.models import Account
 
 
 def get_all_users(current_user):

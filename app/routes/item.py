@@ -7,21 +7,19 @@ bp = Blueprint("item", __name__, url_prefix="/item")
 
 
 @bp.route("/all", methods=["GET"])
-@token_required
 def get_all_item():
     return itemControllers.get_all_item()
 
 
 @bp.route("/<int:id>", methods=["GET"])
-@token_required
 def get_one_item(id):
     return itemControllers.get_one_item(id)
 
 
 @bp.route("/create", methods=["POST"])
 @token_required
-def create_item():
-    return itemControllers.create_item()
+def create_item(current_user):
+    return itemControllers.create_item(current_user)
 
 
 @bp.route("/<int:id>/update", methods=["POST"])

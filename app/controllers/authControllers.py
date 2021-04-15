@@ -3,7 +3,7 @@ import jwt
 from functools import wraps
 from datetime import datetime, timedelta
 from app import app, db
-from app.models.account import Account
+from app.models.models import Account
 
 
 def token_required(f):
@@ -79,3 +79,4 @@ def login():
 
 
 def logout():
+    pass

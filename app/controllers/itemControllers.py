@@ -1,7 +1,7 @@
 from flask import request, jsonify
 from datetime import datetime, timedelta
 from app import app, db
-from app.models.item import Item
+from app.models.models import Item
 
 
 def get_all_item():
@@ -37,15 +37,17 @@ def get_one_item(id):
     return jsonify({"item": item_data})
 
 
-def create_item():
-    data = request.get_json()
+def create_item(current_user):
+    if not current_user.admin:
+        return jsonify({"message": "You're not allowed!"})
 
-    item1 = Item.query.filter_by(data["name"]).first()
+    data = request.get_json()
+    item1 = Item.query.filter_by(name=data["name"]).first()
 
     if item1:
         return jsonify({"message": "Item's name already exist!"})
     
-    item = Item(name=data["name"], price=date["price"], stock=data["stock"],
+    item = Item(name=data["name"], price=data["price"], stock=data["stock"],
                 collection=data["collection"],
                 create_at=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 update_at=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
